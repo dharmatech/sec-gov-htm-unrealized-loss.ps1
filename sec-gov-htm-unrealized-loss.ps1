@@ -11,28 +11,11 @@ $cik_table = @{
     SCHW = 'CIK0000316709'
     SIVB = 'CIK0000719739'
     # SBNY = 'CIK0001288784'
-    
 }
 
-# $cik = $cik_table.WAL
-
-$cik = $cik_table.SIVB
-
-# $result_submissions = Invoke-RestMethod ('https://data.sec.gov/submissions/{0}.json' -f $cik) -Headers $headers
-
-# $result = Invoke-RestMethod ('https://data.sec.gov/api/xbrl/companyfacts/{0}.json' -f $cik) -Headers $headers
+$cik = $cik_table.PACW
 
 $result = Invoke-RestMethod ('https://data.sec.gov/api/xbrl/companyconcept/{0}/us-gaap/HeldToMaturitySecuritiesAccumulatedUnrecognizedHoldingLoss.json' -f $cik) -Headers $headers
-
-# SIVB
-# $result_json = $result.Replace('USD/Right', 'USD/Right1') | ConvertFrom-Json
-# $result = $result_json
-
-# SCHW
-# $result_json = $result.Replace('Segment', "Segment1").Replace('State', 'State1') | ConvertFrom-Json
-# $result = $result_json
-
-# $result.facts.'us-gaap'.HeldToMaturitySecuritiesAccumulatedUnrecognizedHoldingLoss.units.USD | ft
 
 $result.units.USD | ft
 
